@@ -1953,21 +1953,21 @@ function readData() {
     selected.forEach(function(code,ide) {
         Promise.all(
           [
-          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=median&unitofmeasure=number"),
+          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=median&unitofmeasure=number"),
 
-          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=old-age-dependancy-ratio&unitofmeasure=number"),
+          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=old-age-dependancy-ratio&unitofmeasure=number"),
 
-          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=65%2B&unitofmeasure=percentage"),
+          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=65%2B&unitofmeasure=percentage"),
 
-          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=85%2B&unitofmeasure=percentage"),
+          d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=85%2B&unitofmeasure=percentage"),
 
-  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=0-15&unitofmeasure=percentage"),
+  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=0-15&unitofmeasure=percentage"),
 
-  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=16-64&unitofmeasure=percentage"),
+  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=16-64&unitofmeasure=percentage"),
 
-  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=spa%2B&unitofmeasure=percentage"),
+  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=spa%2B&unitofmeasure=percentage"),
 
-  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=all&agegroups=16-spa&unitofmeasure=percentage")
+  			  d3.json("https://api.beta.ons.gov.uk/v1/datasets/ageing-population-projections/editions/time-series/versions/2/observations?time=*&geography="+code+"&sex=all&agegroups=16-spa&unitofmeasure=percentage")
 
             //  d3.json("https://api.beta.ons.gov.uk/v1/datasets/projections-older-people-in-single-households/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=people&agegroups=65%2B"),
             //  d3.json("https://api.beta.ons.gov.uk/v1/datasets/projections-older-people-in-single-households/editions/time-series/versions/1/observations?time=*&geography="+code+"&sex=people&agegroups=85%2B")
