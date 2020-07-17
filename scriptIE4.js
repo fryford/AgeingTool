@@ -134,8 +134,8 @@ function ready(data) {
 
 
 
-        var OldCodes = ["S12000024","S12000015","S12000046","S12000044"];
-        var NewCodes = ["S12000048","S12000047","S12000049","S12000050"];
+        var OldCodes = ["S12000024","S12000015","S12000046","S12000044","E10000009","E10000002"];
+        var NewCodes = ["S12000048","S12000047","S12000049","S12000050","E06000059","E06000060"];
 
 			  d.observations.forEach(function(d,i) {
 
@@ -172,10 +172,10 @@ function ready(data) {
     // // filter out the blank observations - pre 2019 boundaries/areas
     //   "Perth and Kinross", "Fife", "Glasgow City", "North Lanarkshire",
     var oldLA = [
-      'Aylesbury Vale','Bournemouth','Buckinghamshire','Cambridgeshire','Chiltern','Christchurch',
-      'Cumbria','Derbyshire','Devon','Dorset','East Dorset','East Sussex',
+      'Aylesbury Vale','Bournemouth','Cambridgeshire','Chiltern','Christchurch',
+      'Cumbria','Derbyshire','Devon','East Dorset','East Sussex',
       'Essex','Forest Heath','Gloucestershire','Greater Manchester','Hampshire','Hertfordshire',
-      'Kent','Lancashire','Leicestershire','Lincolnshire','Merseyside','Norfolk','North Dorset','North Lanarkshire',
+      'Kent','Lancashire','Leicestershire','Lincolnshire','Merseyside','Norfolk','North Dorset',
       'North Yorkshire','Northamptonshire','Nottinghamshire','Oxfordshire','Poole','Purbeck','Shepway',
       'Somerset','South Bucks','South Yorkshire','St Edmundsbury','Staffordshire','Suffolk','Suffolk Coastal',
       'Surrey','Taunton Deane','Tyne and Wear','Warwickshire','Waveney','West Dorset','West Somerset','West Sussex',
