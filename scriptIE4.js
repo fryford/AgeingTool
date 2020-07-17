@@ -414,7 +414,7 @@ function ready(data) {
 
 
     readData();
-    if(pane == "projections") {
+    if(pane == "projection") {
       removeAreaValues();
     }
 
