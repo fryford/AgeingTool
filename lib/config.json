@@ -1,0 +1,34 @@
+{
+    "essential" : {
+            "sourceText":["The spatial distribution of industries in Great Britain: 2015"],
+            "sourceURL":["https://www.ons.gov.uk/"],
+
+            "barHeight_sm_md_lg" : [70,70,70],
+            "xAxisLabel":"%"
+
+    },
+    "optional" : {
+            "margin_sm": [20, 90, 20, 20],
+            "margin_md": [20, 20, 20, 20],
+            "margin_lg": [20, 20, 20, 20],
+
+            "aspectRatio_sm" : [1,1],
+            "aspectRatio_md" : [1,1],
+            "aspectRatio_lg" : [1,1],
+
+            "mobileBreakpoint" : 580,
+
+            "x_num_ticks_sm_md_lg" : [0,0,0]
+
+    },
+    "map": {"ons":{
+      "maptitle": "Old age dependancy",
+      "varcolour": "PuBu",
+      "varunit": "old-age-dependancy-ratio",
+      "displaydecimals": 1,
+      "legenddecimals": 0,
+      "breaks": "jenks",
+      "dropticks": false,
+      "numberBreaks": 5
+    }}
+}
