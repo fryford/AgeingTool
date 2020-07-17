@@ -2019,12 +2019,16 @@ function readData() {
   } else {
     d3.select("#projections").selectAll("*").remove();
 
-    d3.select("#projections")
-    //.attr('width', rhsWidth)
-    .style("display", "block")
-    .append("div")
-    .append("h4")
-    .html("Please select some areas to see projections data.<br>Note that projections data for Welsh Local Authorities are currently unavailable.");
+    if(pane == "projection") {
+      d3.select("#projections")
+      //.attr('width', rhsWidth)
+      .style("display", "block")
+      .append("div")
+      .append("h4")
+      .html("Please select some areas to see projections data.<br>Note that projections data for Welsh Local Authorities are currently unavailable.");
+
+
+    }
 
   }
 
