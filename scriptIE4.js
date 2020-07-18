@@ -7,6 +7,7 @@ if (Modernizr.svg) {
   var pane = "current";
   var x_key;
   var previousArea;
+  var oldSelected = [];
   var valueColourPairs =[];
       selected=[];
   var hover = [];
@@ -412,7 +413,7 @@ function ready(data) {
                 if(addedtoDD[i] != "N/A") {
                   return fmtNo(addedtoDD[i])+dvc.essential.xAxisBarLabel[currSel];
                 } else {
-                  return addedtoDD[i]; 
+                  return addedtoDD[i];
                 }
               });
 
@@ -457,9 +458,12 @@ function ready(data) {
 
     d3.select('#current').on('click', function(evt){
 
-      selected = oldSelected;
 
       pane = "current";
+
+      selected = oldSelected;
+
+
                   d3.select("#barcodes").style("display", "inline");
                   d3.select("#projections").style("display", "none");
 
@@ -1965,8 +1969,7 @@ function readData() {
       var difference = [];
       var datasets = [];
 
-      oldSelected = selected;
-
+      oldSelected = selected.slice();
 
    var removeGR = ['W92000004','W06000001','W06000002','W06000003','W06000004','W06000005','W06000006','W06000023','W06000008','W06000009','W06000010','W06000011','W06000012','W06000013','W06000014','W06000015','W06000016','W06000024','W06000018','W06000019','W06000020','W06000021','W06000022','K03000001'];
 
@@ -1980,7 +1983,7 @@ function readData() {
      missingIDs.push(d);
    }
 
-})
+});
 
 
 for (var i = missingIDs.length -1; i >= 0; i--) {
@@ -2022,7 +2025,6 @@ for (var i = missingIDs.length -1; i >= 0; i--) {
                     // )
         ).then(function(all_dataset) {
 
-          console.log(all_dataset);
 
 
         var smallMultipleData = [];
@@ -2060,22 +2062,19 @@ for (var i = missingIDs.length -1; i >= 0; i--) {
 
 
   } else {
+
     d3.select("#projections").selectAll("*").remove();
 
     if(pane == "projection") {
-      d3.select("#projections")
-      //.attr('width', rhsWidth)
-      .style("display", "block")
-      .append("div")
-      .append("h4")
-      .html("Please select some areas to see projections data.<br>Note that projections data for Welsh Local Authorities are currently unavailable.");
 
+      d3.select("#projections")
+        .style("display", "block")
+        .append("div")
+        .append("h4")
+        .html("Please select some areas to see projections data.<br>Note that projections data for Welsh Local Authorities are currently unavailable.");
 
     }
-
   }
-
-
 
 } // end function readData()
 
@@ -2606,16 +2605,12 @@ function addtoDDlist(idpassed){
                            return u.id == idpassed;
                          });
 
-      console.log(data);
-      console.log(ddvalue);
       if(ddvalue.length == 0) {
         ddvalue = [{value: "N/A"}]
       }
 
         // THIS NEEDS TO BE TESTED AGAIN
       if(ddvalue.length !== 0) addedtoDD.push(ddvalue[0].value);
-
-      console.log(addedtoDD)
 
         $('#areaselect').chosen({
           placeholder_text_multiple: "Choose "});
