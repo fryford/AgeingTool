@@ -401,13 +401,31 @@ function ready(data) {
 
                 hoverColour = unusedColours[0];
 
-           d3.selectAll('.search-choice')
-             .select('span')
-             .attr('class', 'li_span1')
-             .attr('id', function(d,i){
-                   return 'li_span_' + d; })
-             .append('span')
-             .text(function(d,i){return fmtNo(addedtoDD[i])+dvc.essential.xAxisBarLabel[currSel]; });
+          if(pane == "current") {
+            d3.selectAll('.search-choice')
+              .select('span')
+              .attr('class', 'li_span1')
+              .attr('id', function(d,i){
+                    return 'li_span_' + d; })
+              .append('span')
+              .text(function(d,i){
+                if(addedtoDD[i] != "N/A") {
+                  return fmtNo(addedtoDD[i])+dvc.essential.xAxisBarLabel[currSel];
+                } else {
+                  return addedtoDD[i]; 
+                }
+              });
+
+          } else {
+            d3.selectAll('.search-choice')
+              .select('span')
+              .attr('class', 'li_span1')
+              .attr('id', function(d,i){
+                    return 'li_span_' + d; })
+              .append('span')
+              .text(function(d,i){return dvc.essential.xAxisBarLabel[currSel]; });
+
+          }
 
   //  addtoDDlist();
    // removeLine(params.deselected); // I need to add 0-n
@@ -438,6 +456,8 @@ function ready(data) {
     .text(configdata.essential.variablelabels[currSel]);
 
     d3.select('#current').on('click', function(evt){
+
+      selected = oldSelected;
 
       pane = "current";
                   d3.select("#barcodes").style("display", "inline");
@@ -1081,9 +1101,19 @@ d3.select("#horiz").selectAll("text").attr("transform", "translate(0,6)");
                 return dat.id == d && dat.group == cattype;
               });
 
+              if(newNo.length == 0) {
+                newNo = [{value: "N/A"}]
+              };
+
               selecta.push(newNo[0].value);
               d3.select('#li_span_'+d+' span')
-              .text(fmtNo(newNo[0].value)+config.essential.xAxisBarLabel[currSel]);
+              .text(function(){
+                if(newNo[0].value != "N/A") {
+                  return fmtNo(newNo[0].value)+config.essential.xAxisBarLabel[currSel];
+                } else {
+                  return newNo[0].value;
+                }
+              });
             });
 
       // addedtoDD need new values
@@ -1935,18 +1965,29 @@ function readData() {
       var difference = [];
       var datasets = [];
 
+      oldSelected = selected;
+
 
    var removeGR = ['W92000004','W06000001','W06000002','W06000003','W06000004','W06000005','W06000006','W06000023','W06000008','W06000009','W06000010','W06000011','W06000012','W06000013','W06000014','W06000015','W06000016','W06000024','W06000018','W06000019','W06000020','W06000021','W06000022','K03000001'];
+
  missing = [];
-        var idx = 0;
-            removeGR.forEach(function(d) {
-              selected = selected.filter(function(item,i) {
-                if(item !== d) {
-                  return item;} else {
-                    missing.push(i,d);
-                  }
-              })
-            });
+ missingIDs = [];
+
+ removeGR.forEach(function(d,i) {
+
+   if(selected.indexOf(d) != -1) {
+     missing.push(selected.indexOf(d),d);
+     missingIDs.push(d);
+   }
+
+})
+
+
+for (var i = missingIDs.length -1; i >= 0; i--) {
+   currInd = selected.indexOf(missingIDs[i]);
+
+   selected.splice(currInd,1);
+ }
 
   if(selected.length>0) {
 
@@ -1980,6 +2021,8 @@ function readData() {
                       ]
                     // )
         ).then(function(all_dataset) {
+
+          console.log(all_dataset);
 
 
         var smallMultipleData = [];
@@ -2562,9 +2605,17 @@ function addtoDDlist(idpassed){
   var ddvalue = data.filter(function(u){
                            return u.id == idpassed;
                          });
+
+      console.log(data);
+      console.log(ddvalue);
+      if(ddvalue.length == 0) {
+        ddvalue = [{value: "N/A"}]
+      }
+
         // THIS NEEDS TO BE TESTED AGAIN
       if(ddvalue.length !== 0) addedtoDD.push(ddvalue[0].value);
 
+      console.log(addedtoDD)
 
         $('#areaselect').chosen({
           placeholder_text_multiple: "Choose "});
@@ -2605,7 +2656,14 @@ function addtoDDlist(idpassed){
                   .attr('id', function(d,i){
                         return 'li_span_' + d; })
                   .append('span')
-                  .text(function(d,i){return fmtNo(addedtoDD[i])+dvc.essential.xAxisBarLabel[currSel]; });
+                  .text(function(d,i){
+                    if(addedtoDD[i] != "N/A") {
+                      return fmtNo(addedtoDD[i])+dvc.essential.xAxisBarLabel[currSel];
+
+                    } else {
+                      return addedtoDD[i];
+                    }
+                  });
 
           } else {
             d3.selectAll('.search-choice')
